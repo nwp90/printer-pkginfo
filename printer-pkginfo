@@ -139,7 +139,16 @@ else
     storedVersion="0"
 fi
 
-versionComparison=$(echo "$storedVersion < $currentVersion" | bc -l)
+usr/bin/python - $storedVersion $currentVersion <<'EOF'
+import sys
+sys.path.append("/usr/local/munki")
+from munkilib import munkicommon as munkicommon
+if munkicommon.MunkiLooseVersion(sys.argv[1]) < munkicommon.MunkiLooseVersion(sys.argv[2]):
+    sys.exit(1)
+sys.exit(0)
+EOF
+versionComparison=$?
+
 # This will be 0 if the current receipt is greater than or equal to current version of the script
 
 ### Printer Install ###
@@ -184,7 +193,15 @@ else
     storedVersion="0"
 fi
 
-versionComparison=$(echo "$storedVersion < $currentVersion" | bc -l)
+usr/bin/python - $storedVersion $currentVersion <<'EOF'
+import sys
+sys.path.append("/usr/local/munki")
+from munkilib import munkicommon as munkicommon
+if munkicommon.MunkiLooseVersion(sys.argv[1]) < munkicommon.MunkiLooseVersion(sys.argv[2]):
+    sys.exit(1)
+sys.exit(0)
+EOF
+versionComparison=$?
 # This will be 0 if the current receipt is greater than or equal to current version of the script
 
 ### Printer Install ###
