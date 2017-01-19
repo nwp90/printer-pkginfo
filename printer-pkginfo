@@ -139,7 +139,7 @@ else
     storedVersion="0"
 fi
 
-usr/bin/python - $storedVersion $currentVersion <<'EOF'
+/usr/bin/python - $storedVersion $currentVersion <<'EOF'
 import sys
 sys.path.append("/usr/local/munki")
 from munkilib import munkicommon as munkicommon
@@ -193,7 +193,7 @@ else
     storedVersion="0"
 fi
 
-usr/bin/python - $storedVersion $currentVersion <<'EOF'
+/usr/bin/python - $storedVersion $currentVersion <<'EOF'
 import sys
 sys.path.append("/usr/local/munki")
 from munkilib import munkicommon as munkicommon
